@@ -2,11 +2,15 @@ package com.example.quizapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +24,10 @@ public class Activity3 extends AppCompatActivity {
 
     int totalQuestions;
     int qCounter=0;
+    int score;
+
+    ColorStateList dfRbColor;
+    boolean answered;
 
     private QuestionModel currentQuestion;
     private List<QuestionModel> questionsList;
@@ -40,13 +48,71 @@ public class Activity3 extends AppCompatActivity {
         rb3= findViewById(R.id.rb3);
         rb4= findViewById(R.id.rb4);
         btnNext= findViewById(R.id.btnNext);
+
+        dfRbColor = rb1.getTextColors();
         
         addQuestions();
         totalQuestions = questionsList.size();
         showNextQuestion();
+
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (answered == false){
+                    if(rb1.isChecked() || rb2.isChecked() || rb3.isChecked()  || rb4.isChecked()){
+                        checkAnswer();
+                    }else{
+                        Toast.makeText(Activity3.this, "Please Select an option", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    showNextQuestion();
+                }
+            }
+        });
+    }
+
+    private void checkAnswer() {
+        answered = true;
+        RadioButton rbSelected = findViewById(radioGroup.getCheckedRadioButtonId());
+        int answerNo = radioGroup.indexOfChild(rbSelected) +1;
+        if(answerNo == currentQuestion.getCorrectAnsNo()){
+            score++;
+            tvScore.setText("Score: " + score);
+        }
+        rb1.setTextColor(Color.RED);
+        rb2.setTextColor(Color.RED);
+        rb3.setTextColor(Color.RED);
+        rb4.setTextColor(Color.RED);
+
+        switch (currentQuestion.getCorrectAnsNo()){
+            case 1:
+                rb1.setTextColor(Color.GREEN);
+                break;
+            case 2:
+                rb2.setTextColor(Color.GREEN);
+                break;
+            case 3:
+                rb3.setTextColor(Color.GREEN);
+                break;
+            case 4:
+                rb4.setTextColor(Color.GREEN);
+                break;
+        }
+        if (qCounter < totalQuestions){
+            btnNext.setText("Next");
+        }else{
+            btnNext.setText("Finish");
+        }
     }
 
     private void showNextQuestion() {
+
+        radioGroup.clearCheck();
+        rb1.setTextColor(dfRbColor);
+        rb2.setTextColor(dfRbColor);
+        rb3.setTextColor(dfRbColor);
+        rb4.setTextColor(dfRbColor);
+
         if(qCounter < totalQuestions){
             currentQuestion = questionsList.get(qCounter);
             tvQuestion.setText(currentQuestion.getQuestion());
@@ -56,6 +122,10 @@ public class Activity3 extends AppCompatActivity {
             rb4.setText(currentQuestion.getOption4());
 
             qCounter++;
+
+            btnNext.setText("Submit");
+            tvQuestionNo.setText("Question: " + qCounter + "/" + totalQuestions);
+            answered=false;
         }else{
             finish();
         }
