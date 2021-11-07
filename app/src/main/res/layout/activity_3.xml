@@ -7,7 +7,7 @@
     tools:context=".Activity3">
 
     <TextView
-        android:id="@+id/textQuetionNo"
+        android:id="@+id/textQuestionNo"
         android:layout_width="190dp"
         android:layout_height="28dp"
         android:layout_marginTop="24dp"
@@ -30,7 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.104"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textQuetionNo" />
+        app:layout_constraintTop_toBottomOf="@+id/textQuestionNo" />
 
     <TextView
         android:id="@+id/textQuestion"
@@ -75,7 +75,7 @@
             android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/rb4"
+            android:id="@+id/rb3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Three"
@@ -83,7 +83,7 @@
             android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/radio_four"
+            android:id="@+id/rb4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
