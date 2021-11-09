@@ -132,9 +132,9 @@ public class Activity3 extends AppCompatActivity {
     }
 
     private void addQuestions() {
-        questionsList.add(new QuestionModel("A is correct?","A","B","C","D",1));
-        questionsList.add(new QuestionModel("B is correct?","A","B","C","D",2));
-        questionsList.add(new QuestionModel("C is correct?","A","B","C","D",3));
-        questionsList.add(new QuestionModel("D is correct?","A","B","C","D",4));
+        questionsList.add(new QuestionModel(" The Arabic Letters 'أہ' Sounds Produced from?","End of Throat","Middle of Throat","Start of the Throat","None",1));
+        questionsList.add(new QuestionModel(" The Arabic Letters 'غ خ' Sounds Produced from?","Middle of Throat","Start of the Throat","End of Throat","None",2));
+        questionsList.add(new QuestionModel(" The Arabic Letters 'ق' Sounds Produced from?","Middle of Throat","End of Throat","Base of Tongue","None",3));
+        questionsList.add(new QuestionModel(" The Arabic Letters 'باَ' Sounds Produced from?","End of Throat","Middle of Throat","Base of Tongue","Mouth empty space",4));
     }
 }
