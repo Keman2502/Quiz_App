@@ -70,14 +70,6 @@ public class Activity3 extends AppCompatActivity {
                 }
             }
         });
-        showscore();
-    }
-
-    private void showscore() {
-        int value= score;
-        Intent i = new Intent(Activity3.this, Activity5.class);
-        i.putExtra("key",value);
-        startActivity(i);
     }
 
     private void checkAnswer() {
@@ -137,6 +129,11 @@ public class Activity3 extends AppCompatActivity {
             answered=false;
         }else{
             finish();
+            String s = Integer.toString(score);
+            String value= s;
+            Intent i = new Intent(getApplicationContext(), Activity5.class);
+            i.putExtra("key",value);
+            startActivity(i);
         }
     }
 
